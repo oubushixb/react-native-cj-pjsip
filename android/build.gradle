@@ -53,6 +53,12 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
   }
 
+  sourceSets {
+    main {
+      jniLibs.srcDirs = ['src/main/jniLibs']
+    }
+  }
+
 }
 
 repositories {
@@ -67,7 +73,8 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
 
-  implementation 'org.pjsip:pjsua2-android:2.10'
+  implementation "com.google.code.gson:gson:2.+"
+  //implementation 'org.pjsip:pjsua2-android:2.10'
 }
 
 if (isNewArchitectureEnabled()) {

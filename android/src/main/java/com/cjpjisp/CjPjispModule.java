@@ -7,6 +7,8 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
+import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.Callback;
 
 @ReactModule(name = CjPjispModule.NAME)
 public class CjPjispModule extends ReactContextBaseJavaModule {
@@ -22,6 +24,12 @@ public class CjPjispModule extends ReactContextBaseJavaModule {
     return NAME;
   }
 
+  @ReactMethod
+  public void start(ReadableMap configuration, Callback callback) {
+    int id = receiver.register(callback);
+    Intent intent = PjActions.createStartIntent(id, configuration, getReactApplicationContext());
+    getReactApplicationContext().startService(intent);
+  }
 
   // Example method
   // See https://reactnative.dev/docs/native-modules-android
