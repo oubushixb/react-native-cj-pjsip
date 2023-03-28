@@ -1,22 +1,13 @@
-import { NativeModules, Platform } from 'react-native';
+import Account from './Account';
+import Call from './Call';
+import Endpoint from './Endpoint';
+import PreviewVideoView from './PreviewVideoView';
+import RemoteVideoView from './RemoteVideoView';
 
-const LINKING_ERROR =
-  `The package 'react-native-cj-pjisp' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
-
-const CjPjisp = NativeModules.CjPjisp
-  ? NativeModules.CjPjisp
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
-
-export function multiply(a: number, b: number): Promise<number> {
-  return CjPjisp.multiply(a, b);
+module.exports = {
+    Account,
+    Call,
+    Endpoint,
+    PreviewVideoView,
+    RemoteVideoView
 }
